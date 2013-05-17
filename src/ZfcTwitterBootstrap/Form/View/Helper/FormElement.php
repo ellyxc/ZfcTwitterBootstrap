@@ -265,7 +265,7 @@ class FormElement extends ZendFormElement
             $hiddenElementForCheckbox = str_ireplace($withoutHidden, '', $withHidden);
         }
 
-        $id = $element->getAttribute('id') ?: $element->getAttribute('name');
+        $id = $element->getAttribute('id') ?: str_replace(array('[',']','*','&','\\','/','+','^','"','"'), '-', $element->getAttribute('name'));
 
         if (method_exists($renderer, 'plugin')) {
             if ($element instanceof \Zend\Form\Element\Radio) {
